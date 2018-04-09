@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
@@ -28,7 +29,9 @@ public class WebConfiguration {
 
         @Override
         public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-
+            HttpServletRequest request  = (HttpServletRequest)servletRequest;
+            System.out.println("这是我的Filter,url:"+request.getRequestURL());
+            filterChain.doFilter(servletRequest,servletResponse);
         }
     }
 }
